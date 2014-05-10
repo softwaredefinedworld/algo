@@ -46,7 +46,24 @@ void generatePrime(int n, bool prime[])
         }
     }
 }
-
+//generate prime multiplicity for n!
+void generatePrimeMultiplicity(int n, bool primes[], int primeMultiplicity[])
+{
+    for(int i=0;i<n; i++)
+    {
+        if (primes[i])
+        {
+            int e=0;
+            int num=n;
+            while(num)
+            {
+                e+=num/i;
+                num = num/i;
+            }
+            primeMultiplicity[i]=e;
+        }
+    }
+}
 int main()
 {
     cout <<isPrime(0)<<endl;
@@ -57,11 +74,13 @@ int main()
     cout <<isPrime(5)<<endl;
 
     bool prime[200];
+    int primeMultiplicity[200];
     generatePrime(100, prime);
-    for(int i=0;i<100;i++)
+    generatePrimeMultiplicity(10,prime, primeMultiplicity);
+    for(int i=0;i<10;i++)
     {
         if (prime[i])
-            cout <<i<<endl;
+            cout <<"Multiplicity for prime "<<i<<" is "<<primeMultiplicity[i]<<endl;
     }
 
 }
