@@ -64,6 +64,38 @@ void generatePrimeMultiplicity(int n, bool primes[], int primeMultiplicity[])
         }
     }
 }
+// Program to print all prime factors
+# include <stdio.h>
+# include <math.h>
+ 
+// A function to print all prime factors of a given number n
+void primeFactors(int n)
+{
+    printf("\n");
+    // Print the number of 2s that divide n
+    while (n%2 == 0)
+    {
+        printf("%d ", 2);
+        n = n/2;
+    }
+ 
+    // n must be odd at this point.  So we can skip one element (Note i = i +2)
+    for (int i = 3; i <= sqrt(n); i = i+2)
+    {
+        // While i divides n, print i and divide n
+        while (n%i == 0)
+        {
+            printf("%d ", i);
+            n = n/i;
+        }
+    }
+ 
+    // This condition is to handle the case whien n is a prime number
+    // greater than 2
+    if (n > 2)
+        printf ("%d ", n);
+}
+ 
 int main()
 {
     cout <<isPrime(0)<<endl;
@@ -82,5 +114,13 @@ int main()
         if (prime[i])
             cout <<"Multiplicity for prime "<<i<<" is "<<primeMultiplicity[i]<<endl;
     }
+
+    primeFactors(315);
+    primeFactors(29);
+    primeFactors(912);
+    primeFactors(257);
+    primeFactors(49);
+
+
 
 }
